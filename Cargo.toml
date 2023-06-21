@@ -1,0 +1,43 @@
+[package]
+name = "trigger-tailscale"
+version = { workspace = true }
+authors = { workspace = true }
+edition = { workspace = true }
+
+[workspace.package]
+version = "0.1.0"
+authors = ["Danielle Lancashire <danielle@fermyon.com>"]
+edition = "2021"
+
+[workspace.dependencies]
+tracing = { version = "0.1", features = ["log"] }
+wasmtime-wasi = { version = "8.0.1", features = ["tokio"] }
+wasi-common-preview1 = { package = "wasi-common", version = "8.0.1" }
+wasmtime = { version = "8.0.1", features = ["component-model"] }
+spin-componentize = { git = "https://github.com/fermyon/spin-componentize", rev = "b6d42fe41e5690844a661deb631d996a2b49debc" }
+wasi-host = { package = "host", git = "https://github.com/fermyon/spin-componentize", rev = "b6d42fe41e5690844a661deb631d996a2b49debc" }
+wasi-common = { git = "https://github.com/fermyon/spin-componentize", rev = "b6d42fe41e5690844a661deb631d996a2b49debc" }
+wasi-cap-std-sync = { git = "https://github.com/fermyon/spin-componentize", rev = "b6d42fe41e5690844a661deb631d996a2b49debc" }
+
+
+[workspace.dependencies.wit-bindgen-wasmtime]
+git = "https://github.com/fermyon/wit-bindgen-backport"
+rev = "ba1636af0338623b54db84e2224be9a124e231f6"
+features = ["async"]
+
+[dependencies]
+anyhow = "1.0.68"
+async-trait = "0.1"
+aws-config = "0.52.0"
+aws-sdk-sqs = "0.22.0"
+clap = { version = "3.1.15", features = ["derive", "env"] }
+futures = "0.3.25"
+is-terminal = "0.4.3"
+serde = "1.0"
+spin-core = { git = "https://github.com/fermyon/spin", tag = "v1.3.0" }
+spin-trigger = { git = "https://github.com/fermyon/spin", tag = "v1.3.0" }
+tokio = { version = "1.11", features = [ "full" ] }
+tokio-scoped = "0.2.0"
+tracing = { version = "0.1", features = ["log"] }
+tracing-subscriber = { version = "0.3.7", features = ["env-filter"] }
+spin-trigger-http-tsnet = { path = "crates/trigger-http-tsnet" }

@@ -1,0 +1,5 @@
+name = "trigger-tailscale"
+version = "0.1"
+spin_compatibility = ">=1.1"
+license = "Apache-2.0"
+package = "./target/release/trigger-tailscale"
