@@ -53,8 +53,8 @@ pub struct HttpTrigger {
 #[derive(Args)]
 pub struct CliArgs {
     /// IP address and port to listen on
-    #[clap(long = "listen", default_value = "127.0.0.1:3000", value_parser = parse_listen_addr)]
-    pub address: SocketAddr,
+    #[clap(long = "post", default_value = "3000")]
+    pub port: u16,
 }
 
 #[derive(Clone, Debug, Default, Deserialize, Serialize)]
@@ -115,7 +115,7 @@ impl TriggerExecutor for HttpTrigger {
     }
 
     async fn run(self, config: Self::RunConfig) -> Result<()> {
-        let port = config.address.port();
+        let port = config.port;
 
         // Print startup messages
         let scheme = "http";
